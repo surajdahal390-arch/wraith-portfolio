@@ -1,168 +1,188 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WRAITH | Cyberpunk Portfolio</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WRAITH • Portfolio</title>
 
-    body {
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
 
-    /* 🔥 Cyberpunk Background */
-    .bg {
-      position: fixed;
-      inset: 0;
-      background: url('https://i.imgur.com/8IhYBqr.png') center/cover no-repeat; /* hacker hood mask */
-      filter: brightness(0.35) contrast(1.2);
-      z-index: -1;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* 🔥 Neon Overlay */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(0,255,255,0.15), transparent 70%);
-      z-index: -1;
-    }
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: url('https://i.imgur.com/ghQZQpN.jpeg') center/cover no-repeat fixed;
+            color: cyan;
+            overflow-x: hidden;
+        }
 
-    /* ⚡ Glowing Header */
-    header {
-      text-align: center;
-      padding: 120px 20px 80px;
-    }
-    header h1 {
-      font-size: 4rem;
-      text-transform: uppercase;
-      letter-spacing: 6px;
-      color: cyan;
-      text-shadow: 0 0 25px cyan;
-    }
-    header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
-      margin-top: 10px;
-    }
+        /* Glass overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(3px) brightness(0.6);
+            z-index: -1;
+        }
 
-    /* ⚡ Section Styling */
-    section {
-      padding: 60px 12%;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(8px);
-      margin: 40px 0;
-      border-left: 3px solid cyan;
-      border-right: 3px solid cyan;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(0,255,255,0.3);
-    }
-    section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      color: cyan;
-      text-shadow: 0 0 15px cyan;
-    }
+        header {
+            width: 100%;
+            text-align: center;
+            padding: 60px 0 20px;
+            text-shadow: 0 0 20px cyan;
+            animation: fadeIn 2s ease-out;
+        }
 
-    /* Skills Grid */
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .skill-box {
-      padding: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid cyan;
-      border-radius: 14px;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(0,255,255,0.4);
-    }
+        header h1 {
+            font-size: 3.5rem;
+            letter-spacing: 6px;
+        }
 
-    /* Project Cards */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .project-card {
-      background: rgba(255,255,255,0.06);
-      padding: 20px;
-      border-radius: 18px;
-      border: 1px solid cyan;
-      box-shadow: 0 0 18px rgba(0,255,255,0.25);
-    }
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      margin-top: 50px;
-      background: rgba(0, 0, 0, 0.6);
-      font-size: 0.9rem;
-      border-top: 1px solid cyan;
-    }
-  </style>
+        /* Glitch animation */
+        .glitch {
+            position: relative;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: cyan;
+            background: transparent;
+            overflow: hidden;
+            clip-path: inset(0 0 0 0);
+        }
+
+        .glitch::before {
+            animation: glitchTop 2s infinite linear alternate-reverse;
+            color: #00ffffbb;
+        }
+
+        .glitch::after {
+            animation: glitchBottom 2s infinite linear alternate-reverse;
+            color: #00e6ff77;
+        }
+
+        @keyframes glitchTop {
+            0% { clip-path: inset(0 0 90% 0); transform: translate(2px, -2px); }
+            20% { clip-path: inset(0 0 20% 0); transform: translate(-2px, 2px); }
+            40% { clip-path: inset(0 0 60% 0); transform: translate(1px, -1px); }
+            60% { clip-path: inset(0 0 30% 0); transform: translate(-1px, 1px); }
+            80% { clip-path: inset(0 0 50% 0); transform: translate(2px, 1px); }
+            100% { clip-path: inset(0 0 10% 0); transform: translate(-2px, -1px); }
+        }
+
+        @keyframes glitchBottom {
+            0% { clip-path: inset(70% 0 0 0); transform: translate(-2px, 2px); }
+            20% { clip-path: inset(40% 0 0 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(50% 0 0 0); transform: translate(-1px, 1px); }
+            60% { clip-path: inset(10% 0 0 0); transform: translate(1px, -1px); }
+            80% { clip-path: inset(30% 0 0 0); transform: translate(-2px, -1px); }
+            100% { clip-path: inset(90% 0 0 0); transform: translate(2px, 1px); }
+        }
+
+        /* Sections */
+        section {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 40px;
+            border: 1px solid #00ffff44;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 0 25px #00ffff55;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        .skills-list, .projects-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #00ffffaa;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="overlay"></div>
 
-  <div class="bg"></div>
-  <div class="overlay"></div>
+    <header>
+        <h1 class="glitch" data-text="WRAITH">WRAITH</h1>
+        <p>Cybersecurity • Ethical Hacking • Digital Shadows</p>
+    </header>
 
-  <header>
-    <h1>WRAITH</h1>
-    <p>Cybersecurity Enthusiast • Ethical Hacker • Future OSCP</p>
-  </header>
+    <section id="about">
+        <h2>ABOUT ME</h2>
+        <p>
+            I'm <strong>Suraj Dahal</strong>, also known as <strong>WRAITH</strong> — 
+            a cybersecurity learner exploring penetration testing, digital security, and ethical hacking.
+            I specialize in analyzing vulnerabilities, learning exploit tools, and building a foundation
+            to become a top-tier cyber professional.
+        </p>
+    </section>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I'm Suraj Dahal, also known as <strong>WRAITH</strong>. A cyberpunk-inspired mind with a passion for hacking,
-      cybersecurity, deep systems, and futuristic tech. My mission is to break, defend, and evolve.
-    </p>
-  </section>
+    <section id="skills">
+        <h2>SKILLS</h2>
+        <ul class="skills-list">
+            <li>✔ Linux & Terminal Operations</li>
+            <li>✔ Networking & Port Scanning</li>
+            <li>✔ Basic Bash & Scripting</li>
+            <li>✔ Git & GitHub</li>
+            <li>✔ Cybersecurity Fundamentals</li>
+            <li>✔ Ethical Hacking Basics</li>
+        </ul>
+    </section>
 
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill-box">Linux / Kali</div>
-      <div class="skill-box">Ethical Hacking</div>
-      <div class="skill-box">Networking & Security</div>
-      <div class="skill-box">Python</div>
-      <div class="skill-box">BurpSuite</div>
-      <div class="skill-box">Nmap</div>
-      <div class="skill-box">Cyber Forensics</div>
-    </div>
-  </section>
+    <section id="projects">
+        <h2>PROJECTS</h2>
+        <ul class="projects-list">
+            <li><strong>Wraith Terminal UI</strong> — a futuristic hacking-style console interface</li>
+            <li><strong>Portfolio v1</strong> — glowing neon cyberpunk homepage</li>
+            <li><strong>Linux Practice</strong> — command automation and learning scripts</li>
+        </ul>
+    </section>
 
-  <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Wraith Scanner</h3>
-        <p>A fast lightweight port scanner built for recon.</p>
-      </div>
-      <div class="project-card">
-        <h3>Shadow Encrypt</h3>
-        <p>Custom encryption tool written in Python.</p>
-      </div>
-      <div class="project-card">
-        <h3>Ghost Recon Notes</h3>
-        <p>Advanced pentesting notes and cheat-sheets.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 WRAITH — Cyberpunk Portfolio
-  </footer>
-
+    <footer>
+        © 2025 WRAITH — Cyber Aesthetic Portfolio
+    </footer>
 </body>
 </html>
